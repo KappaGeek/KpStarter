@@ -54,6 +54,14 @@
         height: 100px;
         margin-bottom: 0.42857rem;
       }
+
+    [data-magellan] a {
+      color: #333;
+    }
+    [data-magellan] a.active, [data-magellan] a.active:focus {
+      background: #2199E8;
+      color: #fff;
+    }
     </style>
   </head>
   <body>
@@ -69,16 +77,18 @@
     <div class="column row"><div class="row collapse">
 
       <div class="large-3 medium-4 columns" data-sticky-container>
-        <ul class="vertical menu">
-          {{#each pages}}
-            <li><a href="#{{ anchor }}">{{ title }}</a></li>
-          {{/each}}
-        </ul>
+        <nav class="sticky" data-sticky data-margin-top="0" data-anchor="site-main">
+          <ul class="vertical menu" data-magellan>
+            {{#each pages}}
+              <li><a href="#{{ anchor }}">{{ title }}</a></li>
+            {{/each}}
+          </ul>
+        </nav>
       </div>
 
-      <div class="large-9 medium-8 columns">
+      <div class="large-9 medium-8 columns" id="site-main">
         {{#each pages}}
-          <section class="ss-section" id="{{ anchor }}">
+          <section class="ss-section" id="{{ anchor }}" data-magellan-target="{{ anchor }}">
             {{ body }}
           </section>
         {{/each}}
